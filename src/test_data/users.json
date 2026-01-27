@@ -1,0 +1,26 @@
+{
+  "user1": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": "123 Main St",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10001",
+    "phoneNumber": "555-1234",
+    "ssn": "123-45-6789",
+    "userName": "Say_My_Name",
+    "password": "Balasiva"
+  },
+  "user2": {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "address": "456 Oak Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zipCode": "90001",
+    "phoneNumber": "555-5678",
+    "ssn": "987-65-4321",
+    "userName": "Bala-kps",
+    "password": "Passkey%"
+  }
+}
