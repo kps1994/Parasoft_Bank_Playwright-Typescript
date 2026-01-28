@@ -5,7 +5,11 @@ import { defineConfig, devices } from "@playwright/test";
  */
 import dotenv from "dotenv";
 import path from "path";
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+
+const env = process.env.NODE_ENV || "qa";
+dotenv.config({
+  path: path.resolve(process.cwd(), `src/environment/.env.${env}`),
+});
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -44,35 +48,43 @@ export default defineConfig({
     //   },
     // },
 
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
+    {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Edge"],
+        channel: "msedge",
+        viewport: null,
+        launchOptions: {
+          args: ["--start-maximized"], // Add the maximize argument
+          headless: false, // Set to false if you want to see the browser UI
+        },
+      },
 
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
+      // {
+      //   name: "firefox",
+      //   use: { ...devices["Desktop Firefox"] },
+      // },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+      // {
+      //   name: "webkit",
+      //   use: { ...devices["Desktop Safari"] },
+      // },
+
+      /* Test against mobile viewports. */
+      // {
+      //   name: 'Mobile Chrome',
+      //   use: { ...devices['Pixel 5'] },
+      // },
+      // {
+      //   name: 'Mobile Safari',
+      //   use: { ...devices['iPhone 12'] },
+    },
 
     /* Test against branded browsers. */
     {
       name: "Microsoft Edge",
       use: {
         ...devices["Desktop Edge"],
-        channel: "msedge",
-        launchOptions: {
-          args: ["--start-maximized"], // Add the maximize argument
-        },
       },
     },
     // {

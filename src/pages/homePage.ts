@@ -15,7 +15,15 @@ export class HomePage {
 
   //Action Methods
   async goto() {
-    await this.page.goto(process.env.BASE_URL_DEV || "/");
+    console.log("Navigating to:", process.env.ENV);
+    await this.page.goto(process.env.BASE_URL || "/wrong-url");
     await expect(this.logo()).toBeVisible();
+  }
+
+
+  async login(username: string, password: string) {
+    await this.userName().fill(username);
+    await this.password().fill(password);
+    await this.loginButton().click();
   }
 }
