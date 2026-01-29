@@ -7,20 +7,24 @@ test.beforeEach(async ({ homePage }) => {
 });
 
 test.describe(`Register using Json`, () => {
-  test(`Register using Json user1`, async ({ registerPage }) => {
+  test(`Register using Json user1 @Regression`, async ({ registerPage }) => {
     await registerPage.lastName().isVisible();
     await registerPage.registerNewDataJson(userData.user1);
   });
 
-  test(`Register using Json user2`, async ({ registerPage, page }) => {
-    await registerPage.registerNewDataJson(userData.user2);
-    await page.waitForTimeout(5000);
-  });
+  test(
+    `Register using Json user2`,
+    { tag: ["@Sanity"] },
+    async ({ registerPage }) => {
+      await registerPage.registerNewDataJson(userData.user2);
+      await registerPage.page.waitForTimeout(5000);
+    },
+  );
 
-  test(`Register Random Data`, async ({ registerPage, page }) => {
+  test(`Register Random Data`, async ({ registerPage }) => {
     const rand = createRandomUser();
     await registerPage.registerNewDataRandom(rand);
-    await page.waitForTimeout(5000);
+    await registerPage.page.waitForTimeout(5000);
 
     if (await registerPage.userNameError().isVisible()) {
       await expect(registerPage.userNameError()).toHaveText(
@@ -38,7 +42,9 @@ test.describe(`Register using Json`, () => {
 });
 
 test.describe(`Register Negative Scenarios`, () => {
-  test("Register fields Error validation", async ({ registerPage,page }) => {
+  test("Register fields Error validation @Regression", async ({
+    registerPage,
+  }) => {
     await registerPage.registerLink().click();
     await registerPage.sumbit().click();
     expect(registerPage.firstNameError()).toHaveText("First name is required.");
@@ -56,20 +62,21 @@ test.describe(`Register Negative Scenarios`, () => {
     expect(registerPage.repeatedPasswordError()).toHaveText(
       "Password confirmation is required.",
     );
-    await page.waitForTimeout(5000);
+    await registerPage.page.waitForTimeout(5000);
   });
 
-  test("Register password match Error validation", async ({
-    registerPage,
-    page,
-  }) => {
-    await registerPage.registerLink().click();
-    await registerPage.password().fill("new");
-    await registerPage.repeatedPassword().fill("new1");
-    await registerPage.sumbit().click();
-    expect(registerPage.repeatedPasswordError()).toHaveText(
-      "Passwords did not match.",
-    );
-    await page.waitForTimeout(5000);
-  });
+  test(
+    "Register password match Error validation",
+    { tag: ["@Sanity"] },
+    async ({ registerPage }) => {
+      await registerPage.registerLink().click();
+      await registerPage.password().fill("new");
+      await registerPage.repeatedPassword().fill("new1");
+      await registerPage.sumbit().click();
+      expect(registerPage.repeatedPasswordError()).toHaveText(
+        "Passwords did not match.",
+      );
+      await registerPage.page.waitForTimeout(5000);
+    },
+  );
 });

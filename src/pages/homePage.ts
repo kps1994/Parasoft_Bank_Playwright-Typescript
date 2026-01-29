@@ -13,13 +13,18 @@ export class HomePage {
   password = () => this.page.locator('input[name="password"]');
   loginButton = () => this.page.getByRole("button", { name: "Log In" });
 
+  accountsOverviewTitle = () => this.page.locator("h1").filter({ hasText: "Accounts Overview" });
+  accountBalance = (accountID: number) =>
+    this.page.locator(
+      `//table[@id='accountTable']//tr[td/a[text()=${accountID}]]//td[2]`,
+    );
+
   //Action Methods
   async goto() {
     console.log("Navigating to:", process.env.ENV);
     await this.page.goto(process.env.BASE_URL || "/wrong-url");
     await expect(this.logo()).toBeVisible();
   }
-
 
   async login(username: string, password: string) {
     await this.userName().fill(username);
