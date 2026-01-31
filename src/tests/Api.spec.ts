@@ -1,4 +1,19 @@
+import { request } from "http";
 import { test, expect } from "playwright/test";
+
+test.afterAll("Clean Database", async ({ request }) => {
+  const url = "https://parabank.parasoft.com/parabank/services/bank/cleanDB";
+  const response = await request.post(url, {
+    headers: {
+      accept: "application/xml",
+      "content-type": "application/json",
+    },
+  });
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toBe(204);
+  console.log("Database cleaned up after tests");
+  // Add database cleanup logic here if needed
+});
 
 test.describe("Parabank Bill Pay API- XML type", () => {
   test("Positive Scenario POST /billpay should return XML with expected fields", async ({

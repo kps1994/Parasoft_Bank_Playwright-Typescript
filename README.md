@@ -1,3 +1,12 @@
+Clone the Project:
+Open new window in VS code or any IDE
+Click on Clone git Repository (Git should configured before)
+Provide the url in input: https://github.com/kps1994/Parasoft_Bank_Playwright-Typescript.git
+
+How to run:
+npm init playwright@latest
+npx install playwright
+
 Covered Test cases in this project :
 Test Case 1:
 Manual Steps:
