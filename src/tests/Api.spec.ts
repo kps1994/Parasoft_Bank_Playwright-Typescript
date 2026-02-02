@@ -12,7 +12,6 @@ test.afterAll("Clean Database", async ({ request }) => {
   expect(response.ok()).toBeTruthy();
   expect(response.status()).toBe(204);
   console.log("Database cleaned up after tests");
-  // Add database cleanup logic here if needed
 });
 
 test.describe("Parabank Bill Pay API- XML type", () => {

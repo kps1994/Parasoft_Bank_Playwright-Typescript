@@ -1,7 +1,11 @@
 {
   "dependencies": {
-    "dotenv": "^17.2.3",
+ "pg": "npm:@neondatabase/serverless@^1.0.0",
+     "dotenv": "^17.2.3",
     "playwright": "^1.58.0"
+  },
+  "overrides": {
+    "pg": "npm:@neondatabase/serverless@^1.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.2.0",
