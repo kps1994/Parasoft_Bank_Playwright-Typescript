@@ -1,5 +1,4 @@
-import { request } from "http";
-import { test, expect } from "playwright/test";
+import { test, expect } from "@playwright/test";
 
 test.afterAll("Clean Database", async ({ request }) => {
   const url = "https://parabank.parasoft.com/parabank/services/bank/cleanDB";

@@ -61,7 +61,7 @@ export default defineConfig({
         viewport: null,
         launchOptions: {
           args: ["--start-maximized"], // Add the maximize argument
-          headless: false, // Set to false if you want to see the browser UI
+          headless: process.env.CI? true: false, // Set to false if you want to see the browser UI
         },
       },
 
