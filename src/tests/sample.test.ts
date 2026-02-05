@@ -70,12 +70,15 @@ test.describe("Sample Page Automation Practice", () => {
   });
 
   test("Shadow dom interaction", async ({ page }) => {
-    await test.step("Interact with iframe", async () => {
+    await test.step("Interact with Shadow dom", async () => {
       //shadoms can access directly without switching to frame
-  await samplePage.shadowInput.click();
-  await samplePage.shadowInput.fill("test shadowDom");
-  await samplePage.shadowCheck.check();
-  await samplePage.shadowNested.click();
+      await samplePage.shadowInput.click();
+      await samplePage.shadowInput.fill("test shadowDom");
+      await samplePage.shadowCheck.check();
+      expect(samplePage.shadowCheck).toBeChecked();
+      await samplePage.shadowCheck.uncheck();
+      expect(samplePage.shadowCheck).not.toBeChecked();
+      await samplePage.shadowNested.click();
     });
   });
 
@@ -84,4 +87,34 @@ test.describe("Sample Page Automation Practice", () => {
     const rowCount = await home.table.locator("tr").count();
     expect(rowCount).toBeGreaterThan(0);
   });
+
+  test("Handling Iframes, Drag and Drop element in playwright", async ({
+    page,
+  }) => {
+    // Go to URL
+    await page.goto("https://jqueryui.com/droppable/");
+
+    const iframe = page.frameLocator('[class="demo-frame"]');
+
+    // drag element, drop element
+    const dragElement = iframe.locator('[id="draggable"]');
+    const dropElement = iframe.locator('[id="droppable"]');
+
+    await dragElement.dragTo(dropElement);
+  });
+});
+
+test("Element Visual Comparison in Playwright", async ({ page }) => {
+  await page.goto("https://github.com/login");
+
+  // Compare page screnshots
+  // fist time - this will create the baseline screenshot
+  await expect(page).toHaveScreenshot("GitHubLoginPage.png");
+
+  // Compare element screnshots
+  const element = page.locator('[class="authentication-header "]');
+  await expect(element).toHaveScreenshot("GitHubLoginForm.png");
+
+  await page.locator("#login_field").fill("playwright with typescript");
+  await expect(element).toHaveScreenshot("GitHubLoginForm.png");
 });
