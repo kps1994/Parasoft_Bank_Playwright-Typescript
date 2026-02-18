@@ -112,5 +112,5 @@ test("api get json example", async ({ request }) => {
   console.log(data.tags[2]);
   expect(data).toHaveProperty("tags");
   expect(data.tags).toHaveLength(10);
-  expect(data.tags[2]).toEqual("YouTube");
+  expect(data.tags[2]).toEqual("Git");
 });
