@@ -14,7 +14,8 @@ test(
       .locator("option") // target each <option>
       .evaluateAll((options) =>
         //options will be an array of those <option> DOM elements.
-        options.map((o) => (o.textContent ?? "").trim()),
+        options
+          .map((o) => (o.textContent ?? "").trim()),
       );
     expect.soft(loanProviderOptions).toEqual(["JMS", "Web Service", "Local"]);
 
