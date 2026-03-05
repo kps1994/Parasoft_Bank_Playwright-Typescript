@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test("min price of watch", async ({ page }) => {
   await page.goto("https://www.amazon.in/");
   await page.waitForLoadState("domcontentloaded");
-
   // Search for "watch"
   await page.getByPlaceholder("Search Amazon.in").fill("watch");
   await page.keyboard.press("Enter");
@@ -26,7 +25,7 @@ test("min price of watch", async ({ page }) => {
 
   const minPrice = Math.min(...prices);
   console.log("Minimum price:", minPrice);
- expect("abcd@j.com").toMatch(/@.+\.com/);
+  expect("abcd@j.com").toMatch(/@.+\.com/);
 
   // (Optional) Just to assert we got something reasonable
   expect(minPrice).toBeGreaterThan(0);
