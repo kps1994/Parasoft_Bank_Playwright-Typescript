@@ -2,3 +2,5 @@ node_modules/
 test-results/
 playwright-report/
 .vscode/
+my-report/
+src/tests/sample.test.ts-snapshots/

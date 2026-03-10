@@ -14,5 +14,19 @@
     "@playwright/test": "^1.58.0",
     "@types/node": "^25.0.10"
   },
-  "scripts": {}
+  "scripts": {},
+  "name": "parasoft_bank_playwright-typescript",
+  "description": "Clone the Project:\r Open new window in VS code or any IDE\r Click on Clone git Repository (Git should configured before)\r Provide the url in input: https://github.com/kps1994/Parasoft_Bank_Playwright-Typescript.git",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kps1994/Parasoft_Bank_Playwright-Typescript.git"
+  },
+  "author": "Balasiva Kamalaselvan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kps1994/Parasoft_Bank_Playwright-Typescript/issues"
+  },
+  "homepage": "https://github.com/kps1994/Parasoft_Bank_Playwright-Typescript#readme"
 }

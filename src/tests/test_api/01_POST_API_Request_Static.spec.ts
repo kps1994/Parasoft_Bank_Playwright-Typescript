@@ -19,7 +19,6 @@ test("Create POST API Request using static file in playwright & typescript", asy
   console.log(
     "POST API Response : " + JSON.stringify(jsonPOSTAPIResponse, null, 2),
   );
-
   // Validating api response
   expect(postAPIResponse.status()).toBe(200);
   expect(postAPIResponse.statusText()).toBe("OK");

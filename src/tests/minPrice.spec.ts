@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 test("min price of watch", async ({ page }) => {
+ await page.addLocatorHandler(page.getByRole('button',{name:'Continue shopping'}), async()=>{
+  await page.getByRole('button',{name:'Continue shopping'}).click()
+ })
   await page.goto("https://www.amazon.in/");
   await page.waitForLoadState("domcontentloaded");
   // Search for "watch"
