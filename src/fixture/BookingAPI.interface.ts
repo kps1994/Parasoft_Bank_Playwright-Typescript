@@ -1,4 +1,4 @@
-interface BookingAPI {
+interface BookingAPI extends BookingDates {
     "firstname": string,
     "lastname": string,
     "totalprice": number,

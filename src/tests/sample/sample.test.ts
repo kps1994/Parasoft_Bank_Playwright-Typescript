@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { SamplePage } from "../pages/SamplePage";
+import { SamplePage } from "../../pages/SamplePage";
 
 test.describe("Sample Page Automation Practice", () => {
   let samplePage: SamplePage;

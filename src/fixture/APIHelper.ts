@@ -1,3 +1,4 @@
+
 export async function formatAPIRequest(
   template: string,
   values: any[],
@@ -17,7 +18,7 @@ export async function getPOSTAPIRequestBody(
   checkin: string,
   checkout: string,
 ) {
-  const apiRequest: BookingAPI = {
+  const apiRequest: BookingAPI  = {
     firstname: fname,
     lastname: lname,
     totalprice: price,

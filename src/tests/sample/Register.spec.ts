@@ -1,6 +1,6 @@
-import { test, expect } from "../fixture/fixture.ts";
-import userData from "../test_data/users.json";
-import { createRandomUser } from "../test_data/random_data.ts";
+import { test, expect } from "../../fixture/fixture.ts";
+import userData from "../../test_data/users.json";
+import { createRandomUser } from "../../test_data/random_data.ts";
 
 test.beforeEach(async ({ homePage }) => {
   await homePage.goto();

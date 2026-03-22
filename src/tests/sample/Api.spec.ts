@@ -1,7 +1,9 @@
-import { test, expect } from "@playwright/test";
-
+import { test, expect,request } from "@playwright/test";
+test.use({
+  baseURL: "https://parabank.parasoft.com/parabank/services/bank"
+})
 test.afterAll("Clean Database", async ({ request }) => {
-  const url = "https://parabank.parasoft.com/parabank/services/bank/cleanDB";
+  const url = "/cleanDB";
   const response = await request.post(url, {
     headers: {
       accept: "application/xml",
@@ -17,7 +19,7 @@ test.describe("Parabank Bill Pay API- XML type", () => {
   test("Positive Scenario POST /billpay should return XML with expected fields", async ({
     request,
   }) => {
-    const url = "https://parabank.parasoft.com/parabank/services/bank/billpay";
+    const url = "/billpay";
 
     const response = await request.post(url, {
       params: {
@@ -114,3 +116,13 @@ test("api get json example", async ({ request }) => {
   expect(data.tags).toHaveLength(10);
   expect(data.tags[2]).toEqual("Git");
 });
+
+
+test('git get', async({request})=>{
+const res=  await request.get('https://github.com/kps1994',
+  {headers  : {cookies:
+    `_gh_sess=gjg21hbXNvpby0u2WBFTNJHQigT%2FcqDwrIX8PX2K6ZPKXammyk3Rou4p6YHTQkCSYj%2FvK13xkosfFzfJTAJ2cxi%2FqFKrWbIWg6SpAwkXzMdKLBuHL9t154l45QTdvRdQeESfF7VTpbufu6M%2Bhkw%2FuewHdII8ZIKqfHyRb96Z28hk4WfDZ7gx7L31b%2FIZZSCXPglHE8ui0IT1XuzzwLJMu%2BDYcadN%2BGC6YKjkjk%2F%2F2hqqOJwbHEOP6zz1YXCFEr9wOUUTIPtJEN9WruX%2Bhb%2BUbdp9WzbF92%2B3QNoYQGMnveIBgLsQfx6ADLQmRmgCXm%2BU6hCHikuKrN6gLZKQ--vALt0WUdviz1Dg3k--YuJQ0f6%2FPdrP9xIEqvXwyg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax`
+  }}
+)
+console.log(res)
+})

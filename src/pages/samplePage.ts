@@ -1,4 +1,4 @@
-import { Page, Locator, FrameLocator } from "@playwright/test";
+import { Page, Locator, FrameLocator,expect } from "@playwright/test";
 
 export class SamplePage {
   readonly page: Page;
@@ -19,6 +19,7 @@ export class SamplePage {
   readonly shadowCheck: Locator;
   readonly shadowNested: Locator;
   readonly table: Locator;
+  readonly playwrightLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -39,6 +40,12 @@ export class SamplePage {
     this.shadowInput = page.locator("#shadow_host > input").first();
     this.shadowCheck = page.locator("input:nth-child(7)");
     this.shadowNested = page.locator("#nested_shadow_content").getByText("Laptops");
-  
+    this.playwrightLink= page.getByText('PlaywrightPractice')
+
+  }
+
+  async Open(){
+    await this.page.goto('https://testautomationpractice.blogspot.com/')
+    expect(await this.page.locator('h1')).toHaveText('Automation Testing Practice')
   }
 }

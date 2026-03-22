@@ -11,8 +11,13 @@ test("new", async () => {
     return isPalindrome(str.slice(1, -1));
   }
 
+  //   function isPalindrome(str: string) {
+  //   if (str == str.split('').reverse().join('') ) return true;
+  //   else return false
+  // }
+
   // Examples
   console.log(isPalindrome("racecar")); // true
-  console.log(isPalindrome("a1bba")); // true
+  console.log(isPalindrome("a1bba")); // false
   console.log(isPalindrome("abc")); // false
 });

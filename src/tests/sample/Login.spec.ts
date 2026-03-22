@@ -1,18 +1,19 @@
-import { test, expect } from "../fixture/fixture.ts";
-import { fetchExpectedBalance } from "../pages/IntegrationSource.ts";
+import { test, expect } from "../../fixture/fixture.ts";
+import { fetchExpectedBalance } from "../../pages/IntegrationSource.ts";
 
 // var expected_balance: number;
 test.beforeEach(async ({ homePage }) => {
   await homePage.goto();
+      await homePage.login(
+      process.env.USERNAME || "",
+      process.env.PASSWORD || "",
+    );
+    await  homePage.page.waitForTimeout(5000);
+
 });
 
 test.describe(`Login using dotenv`, () => {
   test(`Login from environment file`, async ({ homePage }) => {
-    await homePage.login(
-      process.env.USERNAME || "",
-      process.env.PASSWORD || "",
-    );
-    await homePage.page.waitForTimeout(5000);
     expect(homePage.accountsOverviewTitle()).toBeVisible();
     const balance = await homePage
       .accountBalance(Number(process.env.ACCOUNT_ID))
@@ -25,11 +26,6 @@ test.describe(`Login using dotenv`, () => {
     homePage,
     request,
   }) => {
-    await homePage.login(
-      process.env.USERNAME || "",
-      process.env.PASSWORD || "",
-    );
-    await homePage.page.waitForTimeout(5000);
     expect(homePage.accountsOverviewTitle()).toBeVisible();
     const balance = await homePage
       .accountBalance(Number(process.env.ACCOUNT_ID))

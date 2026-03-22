@@ -1,4 +1,4 @@
-import { test, expect } from "../fixture/fixture.ts";
+import { test, expect } from "../../fixture/fixture.ts";
 
 test.beforeEach(async ({ homePage }) => {
   await homePage.goto();
